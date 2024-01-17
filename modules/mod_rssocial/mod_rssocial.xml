@@ -1,0 +1,607 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" client="site" method="upgrade" version="3.2">
+    <name>RSSocial!</name>
+    <author>RSJoomla!</author>
+    <creationDate>May 2014</creationDate>
+    <copyright>Copyright (C) 2014 - 2022</copyright>
+    <license>GNU General Public License version 2 or later</license>
+    <authorEmail>supporttickets@rsjoomla.com</authorEmail>
+    <authorUrl>www.rsjoomla.com</authorUrl>
+    <version>1.2.0</version>
+	<updateservers>
+        <server type="extension" priority="1" name="RSSocial!">https://www.rsjoomla.com/updates/free/mod_rssocial/mod_rssocial.xml</server>
+    </updateservers>
+	<scriptfile>script.php</scriptfile>
+	<description>MOD_RSSOCIAL_DESC</description>
+	<files>
+        <folder module="mod_rssocial">tmpl</folder>
+        <filename module="mod_rssocial">mod_rssocial.php</filename>
+		<filename module="mod_rssocial">helper.php</filename>
+        <filename module="mod_rssocial">mod_rssocial.xml</filename>
+        <filename>index.html</filename>
+    </files>
+	<media folder="media" destination="mod_rssocial">
+		<folder>css</folder>
+		<folder>js</folder>
+		<folder>font</folder>
+		<folder>images</folder>
+    </media>
+	<languages>
+		<language tag="en-GB">language/en-GB/en-GB.mod_rssocial.ini</language>
+		<language tag="en-GB">language/en-GB/en-GB.mod_rssocial.sys.ini</language>
+	</languages>	
+ 	<config>
+		<fields name="params">
+			<fieldset name="facebook_settings" label="MOD_RSSOCIAL_FACEBOOK">
+				<field name="facebook" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_FACEBOOK_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="facebook_url" showon="mode:icons[AND]facebook:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]facebook:1" name="facebook_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="facebook_icon_font_color" showon="mode:icons,icons-sharing[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="facebook_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="facebook_icon_background_color" showon="mode:icons,icons-sharing[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="facebook_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]facebook:1" name="facebook_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="facebook_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="facebook_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="facebook_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="facebook_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]facebook:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:sharing[AND]facebook:1" name="facebook_share_settings" label="MOD_RSSOCIAL_FACEBOOK_SHARE_SETTINGS" />
+				<field name="facebook_like_action" showon="mode:sharing[AND]facebook:1" type="list" default="button_count" label="MOD_RSSOCIAL_FACEBOOK_LIKE_ACTION" description="MOD_RSSOCIAL_FACEBOOK_LIKE_ACTION_DESC" >
+					<option value="like">MOD_RSSOCIAL_FACEBOOK_LIKE</option>
+					<option value="recommend">MOD_RSSOCIAL_FACEBOOK_RECOMMEND</option>
+				</field>
+				<field name="facebook_like_type" showon="mode:sharing[AND]facebook:1" type="list" default="button_count" label="MOD_RSSOCIAL_FACEBOOK_LIKE_TYPE" description="MOD_RSSOCIAL_FACEBOOK_LIKE_TYPE_DESC" >
+					<option value="standard">MOD_RSSOCIAL_FACEBOOK_LIKE_TYPE_STANDARD</option>
+					<option value="box_count">MOD_RSSOCIAL_FACEBOOK_LIKE_TYPE_BOX_COUNT</option>
+					<option value="button_count">MOD_RSSOCIAL_FACEBOOK_LIKE_TYPE_BUTTON_COUNT</option>
+					<option value="button">MOD_RSSOCIAL_FACEBOOK_LIKE_TYPE_BUTTON</option>
+				</field>
+				<field name="facebook_share_button" showon="mode:sharing[AND]facebook:1" class="btn-group" type="radio" label="MOD_RSSOCIAL_FACEBOOK_SHARE_BUTTON" default="1" description="MOD_RSSOCIAL_FACEBOOK_SHARE_BUTTON_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="facebook_like_show_faces" showon="mode:sharing[AND]facebook:1" class="btn-group" type="radio" label="MOD_RSSOCIAL_FACEBOOK_LIKE_SHOW_FACES" default="0" description="MOD_RSSOCIAL_FACEBOOK_LIKE_SHOW_FACES_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="facebook_width" showon="mode:sharing[AND]facebook:1" type="text" default="108" label="MOD_RSSOCIAL_FACEBOOK_LIKE_WIDTH" description="MOD_RSSOCIAL_FACEBOOK_LIKE_WIDTH_DESC" />
+				<field name="facebook_height" showon="mode:sharing[AND]facebook:1" type="text" default="20" label="MOD_RSSOCIAL_FACEBOOK_LIKE_HEIGHT" description="MOD_RSSOCIAL_FACEBOOK_LIKE_HEIGHT_DESC" />
+			</fieldset>
+			<fieldset name="twitter_settings" label="MOD_RSSOCIAL_TWITTER">
+				<field name="twitter" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_TWITTER_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="twitter_url" showon="mode:icons[AND]twitter:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]twitter:1" name="twitter_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="twitter_icon_font_color" showon="mode:icons,icons-sharing[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="twitter_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="twitter_icon_background_color" showon="mode:icons,icons-sharing[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="twitter_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]twitter:1" name="twitter_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="twitter_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="twitter_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="twitter_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="twitter_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]twitter:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:sharing[AND]twitter:1" name="twitter_tweet_settings" label="MOD_RSSOCIAL_TWITTER_TWEET_SETTINGS" />
+				<field name="tweet_size" showon="mode:sharing[AND]twitter:1" type="list" default="small" label="MOD_RSSOCIAL_TWEET_SIZE" description="MOD_RSSOCIAL_TWEET_SIZE_DESC" >
+					<option value="small">MOD_RSSOCIAL_SMALL</option>
+					<option value="large">MOD_RSSOCIAL_LARGE</option>
+				</field>
+			</fieldset>
+			<fieldset name="instagram_settings" label="MOD_RSSOCIAL_INSTAGRAM">
+				<field name="instagram_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="instagram" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_INSTAGRAM_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="instagram_url" showon="mode:icons[AND]instagram:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]instagram:1" name="instagram_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="instagram_icon_font_color" showon="mode:icons[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="instagram_icon_font_color_hover" showon="mode:icons[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="instagram_icon_background_color" showon="mode:icons[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="instagram_icon_background_color_hover" showon="mode:icons[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]instagram:1" name="instagram_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="instagram_caption_font_color" showon="mode:icons[AND]caption:1[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="instagram_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="instagram_caption_background_color" showon="mode:icons[AND]caption:1[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="instagram_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]instagram:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="linkedin_settings" label="MOD_RSSOCIAL_LINKEDIN">
+				<field name="linkedin" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_LINKEDIN_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="linkedin_url" showon="mode:icons[AND]linkedin:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				<field name="linkedin_type" showon="mode:sharing" class="btn-group" type="radio" default="share" label="MOD_RSSOCIAL_LINKEDIN_TYPE" description="MOD_RSSOCIAL_LINKEDIN_TYPE_DESC">
+					<option value="share">MOD_RSSOCIAL_SHARE</option>
+					<option value="follow">MOD_RSSOCIAL_FOLLOW</option>
+				</field>
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]linkedin:1" name="linkedin_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="linkedin_icon_font_color" showon="mode:icons,icons-sharing[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="linkedin_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="linkedin_icon_background_color" showon="mode:icons,icons-sharing[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="linkedin_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]linkedin:1" name="linkedin_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="linkedin_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="linkedin_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="linkedin_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="linkedin_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]linkedin:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:sharing[AND]linkedin:1[AND]linkedin_type:follow" name="linkedin_settings" label="MOD_RSSOCIAL_LINKEDIN_FOLLOW_SETTINGS" />
+				<field name="linkedin_counter" showon="mode:sharing[AND]linkedin:1[AND]linkedin_type:follow" type="list" default="" label="MOD_RSSOCIAL_LINKEDIN_FOLLOW_COUNTER" description="MOD_RSSOCIAL_LINKEDIN_FOLLOW_COUNTER_DESC" >
+				   <option value="">MOD_RSSOCIAL_HIDE</option>
+				   <option value="right">MOD_RSSOCIAL_RIGHT</option>
+				   <option value="bottom">MOD_RSSOCIAL_BOTTOM</option>
+				</field>
+			</fieldset>
+			<fieldset name="youtube_settings" label="MOD_RSSOCIAL_YOUTUBE">
+				<field name="youtube_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="youtube" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_YOUTUBE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="youtube_url" showon="mode:icons[AND]youtube:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]youtube:1" name="youtube_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="youtube_icon_font_color" showon="mode:icons[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="youtube_icon_font_color_hover" showon="mode:icons[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="youtube_icon_background_color" showon="mode:icons[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="youtube_icon_background_color_hover" showon="mode:icons[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]youtube:1" name="youtube_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="youtube_caption_font_color" showon="mode:icons[AND]caption:1[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="youtube_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="youtube_caption_background_color" showon="mode:icons[AND]caption:1[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="youtube_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]youtube:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="tiktok_settings" label="MOD_RSSOCIAL_TIKTOK">
+				<field name="tiktok_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="tiktok" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_TIKTOK_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="tiktok_url" showon="mode:icons[AND]youtube:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]tiktok:1" name="tiktok_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="tiktok_icon_font_color" showon="mode:icons[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="tiktok_icon_font_color_hover" showon="mode:icons[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="tiktok_icon_background_color" showon="mode:icons[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="tiktok_icon_background_color_hover" showon="mode:icons[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]tiktok:1" name="tiktok_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="tiktok_caption_font_color" showon="mode:icons[AND]caption:1[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="tiktok_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="tiktok_caption_background_color" showon="mode:icons[AND]caption:1[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="tiktok_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]tiktok:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="vimeo_settings" label="MOD_RSSOCIAL_VIMEO">
+				<field name="vimeo_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="vimeo" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_VIMEO_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="vimeo_url" showon="mode:icons[AND]vimeo:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]vimeo:1" name="vimeo_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="vimeo_icon_font_color" showon="mode:icons[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="vimeo_icon_font_color_hover" showon="mode:icons[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="vimeo_icon_background_color" showon="mode:icons[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="vimeo_icon_background_color_hover" showon="mode:icons[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]vimeo:1" name="vimeo_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="vimeo_caption_font_color" showon="mode:icons[AND]caption:1[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="vimeo_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="vimeo_caption_background_color" showon="mode:icons[AND]caption:1[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="vimeo_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]vimeo:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="reddit_settings" label="MOD_RSSOCIAL_REDDIT">
+				<field name="reddit_note" showon="mode!:icons,icons-sharing" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="reddit" showon="mode:icons,icons-sharing" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_REDDIT_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="reddit_url" showon="mode:icons[AND]reddit:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]reddit:1" name="reddit_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="reddit_icon_font_color" showon="mode:icons,icons-sharing[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="reddit_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="reddit_icon_background_color" showon="mode:icons,icons-sharing[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="reddit_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]reddit:1" name="reddit_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="reddit_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="reddit_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="reddit_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="reddit_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]reddit:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="tumblr_settings" label="MOD_RSSOCIAL_TUMBLR">
+				<field name="tumblr" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_TUMBLR_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="tumblr_url" showon="mode:icons[AND]tumblr:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]tumblr:1" name="tumblr_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="tumblr_icon_font_color" showon="mode:icons,icons-sharing[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="tumblr_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="tumblr_icon_background_color" showon="mode:icons,icons-sharing[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="tumblr_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]tumblr:1" name="tumblr_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="tumblr_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="tumblr_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="tumblr_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="tumblr_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]tumblr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:sharing[AND]tumblr:1" name="tumblr_post_settings" label="MOD_RSSOCIAL_TUMBLR_POST_SETTINGS" />
+				<field name="tumblr_counter" showon="mode:sharing[AND]tumblr:1" type="list" default="" label="MOD_RSSOCIAL_TUMBLR_POST_COUNTER" description="MOD_RSSOCIAL_TUMBLR_POST_COUNTER_DESC" >
+				   <option value="">MOD_RSSOCIAL_HIDE</option>
+				   <option value="right">MOD_RSSOCIAL_RIGHT</option>
+				   <option value="top">MOD_RSSOCIAL_TOP</option>
+				</field>
+				<field name="tumblr_color" showon="mode:sharing[AND]tumblr:1" type="list" default="blue" label="MOD_RSSOCIAL_TUMBLR_POST_COLOR" description="MOD_RSSOCIAL_TUMBLR_POST_COLOR_DESC" >
+					<option value="black">MOD_RSSOCIAL_BLACK</option>
+					<option value="blue">MOD_RSSOCIAL_BLUE</option>
+					<option value="white">MOD_RSSOCIAL_WHITE</option>
+				</field>
+			</fieldset>
+			<fieldset name="snapchat_settings" label="MOD_RSSOCIAL_SNAPCHAT">
+				<field name="snapchat_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="snapchat" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_SNAPCHAT_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="snapchat_user_name" showon="mode:icons[AND]snapchat:1" type="text" label="MOD_RSSOCIAL_USER_NAME" description="MOD_RSSOCIAL_USER_NAME_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]snapchat:1" name="snapchat_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="snapchat_icon_font_color" showon="mode:icons[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="snapchat_icon_font_color_hover" showon="mode:icons[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="snapchat_icon_background_color" showon="mode:icons[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="snapchat_icon_background_color_hover" showon="mode:icons[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]snapchat:1" name="snapchat_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="snapchat_caption_font_color" showon="mode:icons[AND]caption:1[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="snapchat_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="snapchat_caption_background_color" showon="mode:icons[AND]caption:1[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="snapchat_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]snapchat:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="whatsapp_settings" label="MOD_RSSOCIAL_WHATSAPP">
+				<field name="whatsapp_note" showon="mode!:icons,icons-sharing" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="whatsapp" showon="mode:icons,icons-sharing" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_WHATSAPP_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="whatsapp_phone" showon="whatsapp:1" type="text" label="MOD_RSSOCIAL_PHONE" description="MOD_RSSOCIAL_PHONE_DESC" />
+				<field name="whatsapp_phone" showon="mode:icons[AND]whatsapp:1" type="text" label="MOD_RSSOCIAL_PHONE" description="MOD_RSSOCIAL_PHONE_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]whatsapp:1" name="whatsapp_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="whatsapp_icon_font_color" showon="mode:icons,icons-sharing[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="whatsapp_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="whatsapp_icon_background_color" showon="mode:icons,icons-sharing[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="whatsapp_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]whatsapp:1" name="whatsapp_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="whatsapp_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="whatsapp_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="whatsapp_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="whatsapp_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]whatsapp:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="skype_settings" label="MOD_RSSOCIAL_SKYPE">
+				<field name="skype" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_SKYPE_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="skype_user_name" showon="mode:icons[AND]skype:1" type="text" label="MOD_RSSOCIAL_USER_NAME" description="MOD_RSSOCIAL_USER_NAME_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]skype:1" name="skype_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="skype_icon_font_color" showon="mode:icons,icons-sharing[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="skype_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="skype_icon_background_color" showon="mode:icons,icons-sharing[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="skype_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]skype:1" name="skype_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="skype_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="skype_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="skype_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="skype_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]skype:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:sharing[AND]skype:1" name="skype_share_settings" label="MOD_RSSOCIAL_SKYPE_SHARE_SETTINGS" />
+				<field name="skype_size" showon="mode:sharing[AND]skype:1" type="list" default="false" label="MOD_RSSOCIAL_SKYPE_SIZE" description="MOD_RSSOCIAL_SKYPE_SIZE_DESC" >
+					<option value="small">MOD_RSSOCIAL_SMALL</option>
+					<option value="large">MOD_RSSOCIAL_LARGE</option>
+				</field>
+			</fieldset>
+			<fieldset name="pinterest_settings" label="MOD_RSSOCIAL_PINTEREST">
+				<field name="pinterest" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_PINTEREST_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="pinterest_url" showon="mode:icons[AND]pinterest:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]pinterest:1" name="pinterest_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="pinterest_icon_font_color" showon="mode:icons,icons-sharing[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="pinterest_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="pinterest_icon_background_color" showon="mode:icons,icons-sharing[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="pinterest_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]pinterest:1" name="pinterest_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="pinterest_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="pinterest_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="pinterest_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="pinterest_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]pinterest:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons-sharing,sharing[AND]pinterest:1" name="pinterest_pin_it_settings" label="MOD_RSSOCIAL_PINTEREST_PIN_IT_SETTINGS" />
+				<field name="pinit_type" showon="mode:icons-sharing,sharing[AND]pinterest:1" type="list" default="false" label="MOD_RSSOCIAL_PIN_IT_TYPE" description="MOD_RSSOCIAL_PIN_IT_TYPE_DESC" >
+					<option value="buttonBookmark">MOD_RSSOCIAL_PINTEREST_ALL_IMAGES</option>
+					<option value="buttonPin">MOD_RSSOCIAL_PINTEREST_SINGLE_IMAGE</option>			
+				</field>
+				<field name="pinit_size" showon="mode:sharing[AND]pinterest:1" type="list" default="false" label="MOD_RSSOCIAL_PIN_IT_SIZE" description="MOD_RSSOCIAL_PIN_IT_SIZE_DESC" >
+					<option value="false">MOD_RSSOCIAL_SMALL</option>
+					<option value="true">MOD_RSSOCIAL_LARGE</option>
+				</field>
+				<field name="pinit_counter" showon="mode:sharing[AND]pinterest:1[AND]pinit_type:buttonPin" type="list" default="" label="MOD_RSSOCIAL_PIN_IT_COUNTER" description="MOD_RSSOCIAL_PIN_IT_COUNTER_DESC" >
+					<option value="">MOD_RSSOCIAL_HIDE</option>
+					<option value="above">MOD_RSSOCIAL_TOP</option>
+					<option value="beside">MOD_RSSOCIAL_RIGHT</option>
+				</field>
+				<field name="pinit_image" showon="mode:icons-sharing,sharing[AND]pinterest:1[AND]pinit_type:buttonPin" type="text" label="MOD_RSSOCIAL_PIN_IT_IMAGE" description="MOD_RSSOCIAL_PIN_IT_IMAGE_DESC" />
+				<field name="pinit_description" showon="mode:icons-sharing,sharing[AND]pinterest:1[AND]pinit_type:buttonPin" type="text" label="MOD_RSSOCIAL_PIN_IT_DESCRIPTION" description="MOD_RSSOCIAL_PIN_IT_DESCRIPTION_DESC" />
+			</fieldset>
+			<fieldset name="flickr" label="MOD_RSSOCIAL_FLICKR">
+				<field name="flickr_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="flickr" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_FLICKR_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="flickr_url" showon="mode:icons[AND]flickr:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]flickr:1" name="flickr_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="flickr_icon_font_color" showon="mode:icons[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="flickr_icon_font_color_hover" showon="mode:icons[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="flickr_icon_background_color" showon="mode:icons[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="flickr_icon_background_color_hover" showon="mode:icons[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]flickr:1" name="flickr_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="flickr_caption_font_color" showon="mode:icons[AND]caption:1[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="flickr_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="flickr_caption_background_color" showon="mode:icons[AND]caption:1[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="flickr_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]flickr:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="soundcloud_settings" label="MOD_RSSOCIAL_SOUNDCLOUD">
+				<field name="soundcloud_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="soundcloud" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_SOUNDCLOUD_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="soundcloud_url" showon="mode:icons[AND]soundcloud:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]soundcloud:1" name="soundcloud_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="soundcloud_icon_font_color" showon="mode:icons[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="soundcloud_icon_font_color_hover" showon="mode:icons[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="soundcloud_icon_background_color" showon="mode:icons[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="soundcloud_icon_background_color_hover" showon="mode:icons[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]soundcloud:1" name="soundcloud_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="soundcloud_caption_font_color" showon="mode:icons[AND]caption:1[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="soundcloud_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="soundcloud_caption_background_color" showon="mode:icons[AND]caption:1[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="soundcloud_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]soundcloud:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="spotify_settings" label="MOD_RSSOCIAL_SPOTIFY">
+				<field name="spotify_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="spotify" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_SPOTIFY_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="spotify_url" showon="mode:icons[AND]spotify:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]spotify:1" name="spotify_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="spotify_icon_font_color" showon="mode:icons[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="spotify_icon_font_color_hover" showon="mode:icons[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="spotify_icon_background_color" showon="mode:icons[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="spotify_icon_background_color_hover" showon="mode:icons[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]spotify:1" name="spotify_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="spotify_caption_font_color" showon="mode:icons[AND]caption:1[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="spotify_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="spotify_caption_background_color" showon="mode:icons[AND]caption:1[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="spotify_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]spotify:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="github_settings" label="MOD_RSSOCIAL_GITHUB">
+				<field name="github_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="github" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_GITHUB_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="github_url" showon="mode:icons[AND]github:1" type="text" label="MOD_RSSOCIAL_URL" description="MOD_RSSOCIAL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]github:1" name="github_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="github_icon_font_color" showon="mode:icons[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="github_icon_font_color_hover" showon="mode:icons[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="github_icon_background_color" showon="mode:icons[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="github_icon_background_color_hover" showon="mode:icons[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]github:1" name="github_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="github_caption_font_color" showon="mode:icons[AND]caption:1[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="github_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="github_caption_background_color" showon="mode:icons[AND]caption:1[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="github_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]github:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="recommend_settings" label="MOD_RSSOCIAL_RECOMMEND">
+				<field name="recommend_note" showon="mode!:icons,icons-sharing" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="recommend" showon="mode:icons,icons-sharing" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_RECOMMEND_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]recommend:1" name="recommend_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="recommend_icon_font_color" showon="mode:icons,icons-sharing[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="recommend_icon_font_color_hover" showon="mode:icons,icons-sharing[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="recommend_icon_background_color" showon="mode:icons,icons-sharing[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="recommend_icon_background_color_hover" showon="mode:icons,icons-sharing[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]caption:1[AND]recommend:1" name="recommend_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="recommend_caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="recommend_caption_font_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="recommend_caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="recommend_caption_background_color_hover" showon="mode:icons,icons-sharing[AND]caption:1[AND]recommend:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="mail_settings" label="MOD_RSSOCIAL_MAIL">
+				<field name="mail_note" showon="mode!:icons" type="note" class="alert alert-warning" label="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE" description="MOD_RSSOCIAL_SOCIAL_NOT_AVAILABLE_DESC" />
+				
+				<field name="mail" showon="mode:icons" class="btn-group" type="radio" label="MOD_RSSOCIAL_ENABLED" default="1" description="MOD_RSSOCIAL_MAIL_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field name="mail_url" showon="mode:icons[AND]mail:1" type="email" label="MOD_RSSOCIAL_MAIL" description="MOD_RSSOCIAL_MAIL_URL_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]mail:1" name="mail_icon_settings" label="MOD_RSSOCIAL_ICON_SETTINGS_OVERRIDES" />
+				<field name="mail_icon_font_color" showon="mode:icons[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR" description="MOD_RSSOCIAL_ICON_FONT_COLOR_DESC" />
+				<field name="mail_icon_font_color_hover" showon="mode:icons[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_FONT_COLOR_HOVER_DESC" />
+				<field name="mail_icon_background_color" showon="mode:icons[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_DESC" />
+				<field name="mail_icon_background_color_hover" showon="mode:icons[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_ICON_BACKGROUND_COLOR_HOVER_DESC" />
+				
+				<field type="spacer" showon="mode:icons[AND]caption:1[AND]mail:1" name="mail_caption_settings" label="MOD_RSSOCIAL_CAPTION_SETTINGS_OVERRIDES" />
+				<field name="mail_caption_font_color" showon="mode:icons[AND]caption:1[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_DESC" />
+				<field name="mail_caption_font_color_hover" showon="mode:icons[AND]caption:1[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_FONT_COLOR_HOVER_DESC" />
+				<field name="mail_caption_background_color" showon="mode:icons[AND]caption:1[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_DESC" />
+				<field name="mail_caption_background_color_hover" showon="mode:icons[AND]caption:1[AND]mail:1" type="color" default="" label="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_CAPTION_BACKGROUND_COLOR_HOVER_DESC" />
+			</fieldset>
+			<fieldset name="appearance" label="MOD_RSSOCIAL_APPEARANCE">
+				<field name="mode" class="btn-group" type="radio" default="icons" label="MOD_RSSOCIAL_MODE" description="MOD_RSSOCIAL_MODE_DESC">
+					<option value="icons">MOD_RSSOCIAL_ICONS</option>
+					<option value="sharing">MOD_RSSOCIAL_SHARING</option>
+					<option value="icons-sharing">MOD_RSSOCIAL_ICONS_SHARING</option>
+				</field>
+				<field name="icon_positioning" class="btn-group" type="radio" default="inline" label="MOD_RSSOCIAL_ICONS_POSITIONING" description="MOD_RSSOCIAL_ICONS_POSITIONING_DESC">
+					<option value="inline">MOD_RSSOCIAL_INLINE</option>
+					<option value="floating">MOD_RSSOCIAL_FLOATING</option>
+				</field>
+				<field name="popup" showon="mode:icons,icons-sharing" class="btn-group" type="radio" default="0" label="MOD_RSSOCIAL_POPUP_BUTTON" description="MOD_RSSOCIAL_POPUP_BUTTON_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]popup:1" name="popup_button_settings" label="MOD_RSSOCIAL_POPUP_BUTTON_SETTINGS" />
+				<field name="popup_theme" showon="mode:icons,icons-sharing[AND]popup:1" type="list" default="bg" label="MOD_RSSOCIAL_POPUP_BUTTON_THEME" description="MOD_RSSOCIAL_POPUP_BUTTON_THEME_DESC">
+					<option value="nobg">MOD_RSSOCIAL_NO_BACKGROUND</option>
+					<option value="bg">MOD_RSSOCIAL_STANDARD_BACKGROUND</option>
+					<option value="rounded">MOD_RSSOCIAL_ROUNDED_BACKGROUND</option>
+					<option value="round">MOD_RSSOCIAL_ROUND_BACKGROUND</option>
+				</field>
+				<field name="popup_border_radius" showon="mode:icons,icons-sharing[AND]popup:1[AND]popup_theme:rounded" type="number" default="4" min="1" max="100" step="1" label="MOD_RSSOCIAL_POPUP_BUTTON_BORDER_RADIUS" description="MOD_RSSOCIAL_POPUP_BUTTON_BORDER_RADIUS_DESC" />
+				<field name="popup_size" showon="mode:icons,icons-sharing[AND]popup:1" type="number" default="24" step="1" label="MOD_RSSOCIAL_POPUP_BUTTON_SIZE" description="MOD_RSSOCIAL_POPUP_BUTTON_FONT_DESC" />
+				<field name="popup_font_color" showon="mode:icons,icons-sharing[AND]popup:1" type="color" default="#5f5f5f" label="MOD_RSSOCIAL_POPUP_BUTTON_FONT_COLOR" description="MOD_RSSOCIAL_POPUP_BUTTON_FONT_COLOR_DESC" />
+				<field name="popup_background_color" showon="mode:icons,icons-sharing[AND]popup:1" type="color" default="#cccccc" label="MOD_RSSOCIAL_POPUP_BUTTON_BACKGROUND_COLOR" description="MOD_RSSOCIAL_POPUP_BUTTON_BACKGROUND_COLOR_DESC" />
+				<field name="popup_font_color_hover" showon="mode:icons,icons-sharing[AND]popup:1" type="color" default="#000000" label="MOD_RSSOCIAL_POPUP_BUTTON_FONT_COLOR_HOVER" description="MOD_RSSOCIAL_POPUP_BUTTON_FONT_COLOR_HOVER_DESC" />
+				<field name="popup_background_color_hover" showon="mode:icons,icons-sharing[AND]popup:1" type="color" default="#7f7f7f" label="MOD_RSSOCIAL_POPUP_BUTTON_BACKGROUND_COLOR_HOVER" description="MOD_RSSOCIAL_POPUP_BUTTON_BACKGROUND_COLOR_HOVER_DESC" />
+				<field type="spacer" showon="mode:icons[OR]mode:icons-sharing" name="icons_settings" label="MOD_RSSOCIAL_ICONS_SETTINGS" />
+				<field name="icon_theme" showon="mode:icons[OR]mode:icons-sharing" type="list" default="bg" label="MOD_RSSOCIAL_ICONS_THEME" description="MOD_RSSOCIAL_ICONS_THEME_DESC">
+					<option value="nobg">MOD_RSSOCIAL_NO_BACKGROUND</option>
+					<option value="bg">MOD_RSSOCIAL_STANDARD_BACKGROUND</option>
+					<option value="rounded">MOD_RSSOCIAL_ROUNDED_BACKGROUND</option>
+					<option value="round">MOD_RSSOCIAL_ROUND_BACKGROUND</option>
+				</field>
+				<field name="icon_effect" showon="mode:icons[OR]mode:icons-sharing" type="list" default="push" label="MOD_RSSOCIAL_ICONS_EFFECT" description="MOD_RSSOCIAL_ICONS_EFFECT_DESC">
+					<option value="no-effect">MOD_RSSOCIAL_NO_EFFECT</option>
+					<option value="grow">MOD_RSSOCIAL_GROW</option>
+					<option value="shrink">MOD_RSSOCIAL_SHRINK</option>
+					<option value="pulse">MOD_RSSOCIAL_PULSE</option>
+					<option value="pulse-grow">MOD_RSSOCIAL_PULSE_GROW</option>
+					<option value="pulse-shrink">MOD_RSSOCIAL_PULSE_SHRINK</option>
+					<option value="push">MOD_RSSOCIAL_PUSH</option>
+					<option value="pop">MOD_RSSOCIAL_POP</option>
+					<option value="rotate">MOD_RSSOCIAL_ROATATE</option>
+					<option value="grow-rotate">MOD_RSSOCIAL_GROW_ROTATE</option>
+					<option value="float">MOD_RSSOCIAL_FLOAT</option>
+					<option value="sink">MOD_RSSOCIAL_SINK</option>
+					<option value="skew">MOD_RSSOCIAL_SKEW</option>
+					<option value="skew-forward">MOD_RSSOCIAL_SKEW_FORWARD</option>
+					<option value="skew-backward">MOD_RSSOCIAL_SKEW_BACKWARD</option>
+					<option value="wobble-vertical">MOD_RSSOCIAL_WOBBLE_VERTICAL</option>
+					<option value="wobble-horizontal">MOD_RSSOCIAL_WOBBLE_HORIZONTAL</option>
+					<option value="wobble-to-bottom-right">MOD_RSSOCIAL_WOBBLE_BOTTOM_RIGHT</option>
+					<option value="wobble-to-top-right">MOD_RSSOCIAL_WOBBLE_TOP_RIGHT</option>
+					<option value="wobble-top">MOD_RSSOCIAL_WOBBLE_TOP</option>
+					<option value="wobble-bottom">MOD_RSSOCIAL_WOBBLE_BOTTOM</option>
+					<option value="wobble-skew">MOD_RSSOCIAL_WOBBLE_SKEW</option>
+					<option value="buzz">MOD_RSSOCIAL_BUZZ</option>
+					<option value="buzz-out">MOD_RSSOCIAL_BUZZ_OUT</option>
+					<option value="border-fade">MOD_RSSOCIAL_BORDER_FADE</option>
+					<option value="hollow">MOD_RSSOCIAL_HOLLOW</option>
+					<option value="trim">MOD_RSSOCIAL_TRIM</option>
+					<option value="outline-outward">MOD_RSSOCIAL_OUTLINE_OUTWARD</option>
+					<option value="outline-inward">MOD_RSSOCIAL_OUTLINE_INWARD</option>
+					<option value="round-corners">MOD_RSSOCIAL_ROUND_CORNERS</option>
+					<option value="glow">MOD_RSSOCIAL_GLOW</option>
+					<option value="box-shadow-outset">MOD_RSSOCIAL_BOX_SHADOW_OUTSET</option>
+					<option value="box-shadow-inset">MOD_RSSOCIAL_BOX_SHADOW_INSET</option>
+					<option value="float-shadow">MOD_RSSOCIAL_FLOAT_SHADOW</option>
+					<option value="hover-shadow">MOD_RSSOCIAL_HOVER_SHADOW</option>
+					<option value="shadow-radial">MOD_RSSOCIAL_SHADOW_RADIAL</option>
+				</field>
+				<field name="icon_size" showon="mode:icons[OR]mode:icons-sharing" type="number" default="24" step="1" label="MOD_RSSOCIAL_ICONS_SIZE" description="MOD_RSSOCIAL_ICONS_SIZE_DESC" />
+				<field name="icon_border_radius" showon="icon_theme:rounded[AND]mode:icons[OR]mode:icons-sharing" type="number" default="4" min="1" max="100" step="1" label="MOD_RSSOCIAL_ICONS_BORDER_RADIUS" description="MOD_RSSOCIAL_ICONS_BORDER_RADIUS_DESC" />
+				<field name="icon_font_color" showon="mode:icons[OR]mode:icons-sharing" type="color" default="#ffffff" label="MOD_RSSOCIAL_ICONS_FONT_COLOR" description="MOD_RSSOCIAL_ICONS_FONT_COLOR_DESC" />
+				<field name="icon_background_color" showon="mode:icons[OR]mode:icons-sharing" type="color" default="#000000" label="MOD_RSSOCIAL_ICONS_BACKGROUND_COLOR" description="MOD_RSSOCIAL_ICONS_BACKGROUND_COLOR_DESC" />
+				<field name="icon_transparency" showon="mode:icons[OR]mode:icons-sharing" type="number" default="0.75" min="0" max="1" step="0.05" label="MOD_RSSOCIAL_ICONS_TRANSPARENCY" description="MOD_RSSOCIAL_ICONS_TRANSPARENCY_DESC" />
+				<field name="icon_transparency_hover" showon="mode:icons[OR]mode:icons-sharing" type="number" default="0.5" min="0" max="1" step="0.05" label="MOD_RSSOCIAL_ICONS_TRANSPARENCY_HOVER" description="MOD_RSSOCIAL_ICONS_TRANSPARENCY_HOVER_DESC" />
+				<field name="caption" showon="mode:icons,icons-sharing" class="btn-group" type="radio" default="0" label="MOD_RSSOCIAL_CAPTIONS" description="MOD_RSSOCIAL_CAPTIONS_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field type="spacer" showon="mode:icons,icons-sharing[AND]popup:1" name="caption_settings" label="MOD_RSSOCIAL_CAPTIONS_SETTINGS" />
+				<field name="caption_font_color" showon="mode:icons,icons-sharing[AND]caption:1" type="color" default="#ffffff" label="MOD_RSSOCIAL_CAPTIONS_FONT_COLOR" description="MOD_RSSOCIAL_CAPTIONS_FONT_COLOR_DESC" />
+				<field name="caption_background_color" showon="mode:icons,icons-sharing[AND]caption:1" type="color" default="#000000" label="MOD_RSSOCIAL_CAPTIONS_BACKGROUND_COLOR" description="MOD_RSSOCIAL_CAPTIONS_BACKGROUND_COLOR_DESC" />
+				<field name="caption_size" type="text" showon="mode:icons,icons-sharing[AND]caption:1" default="14" label="MOD_RSSOCIAL_CAPTIONS_SIZE" description="MOD_RSSOCIAL_CAPTIONS_SIZE_DESC" />
+				<field name="caption_transparency" showon="mode:icons,icons-sharing[AND]caption:1" type="text" default="0.75" label="MOD_RSSOCIAL_CAPTIONS_TRANSPARENCY" description="MOD_RSSOCIAL_CAPTIONS_TRANSPARENCY_DESC" />
+				<field name="caption_transparency_hover" showon="mode:icons,icons-sharing[AND]caption:1" type="text" default="0.5" label="MOD_RSSOCIAL_CAPTIONS_TRANSPARENCY_HOVER" description="MOD_RSSOCIAL_CAPTIONS_TRANSPARENCY_HOVER_DESC" />
+				<field type="spacer" showon="icon_positioning:floating" name="floating_settings" label="MOD_RSSOCIAL_FLOATING_SETTINGS" />
+				<field name="icon_float" showon="icon_positioning:floating" class="btn-group" type="radio" default="left" label="MOD_RSSOCIAL_ICONS_FLOAT" description="MOD_RSSOCIAL_ICONS_FLOAT_DESC">
+					<option value="left">MOD_RSSOCIAL_LEFT</option>
+					<option value="top">MOD_RSSOCIAL_TOP</option>
+					<option value="bottom">MOD_RSSOCIAL_BOTTOM</option>
+					<option value="right">MOD_RSSOCIAL_RIGHT</option>
+				</field>
+				<field name="icon_fixed" showon="icon_positioning:floating" class="btn-group" type="radio" default="0" label="MOD_RSSOCIAL_ICONS_FIXED" description="MOD_RSSOCIAL_ICONS_FIXED_DESC">
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
+				<field type="spacer" showon="icon_positioning:inline" name="inline_settings" label="MOD_RSSOCIAL_INLINE_SETTINGS" />
+				<field name="icon_alignment" showon="icon_positioning:inline" class="btn-group" type="radio" default="center" label="MOD_RSSOCIAL_ICONS_ALIGNMENT" description="MOD_RSSOCIAL_ICONS_ALIGNMENT_DESC">
+					<option value="left">MOD_RSSOCIAL_LEFT</option>
+					<option value="center">MOD_RSSOCIAL_CENTER</option>
+					<option value="right">MOD_RSSOCIAL_RIGHT</option>
+				</field>
+			</fieldset>
+			<fieldset name="advanced">
+				<field name="moduleclass_sfx" type="textarea" rows="3" label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL" description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			</fieldset>
+		</fields>
+    </config>
+</extension>

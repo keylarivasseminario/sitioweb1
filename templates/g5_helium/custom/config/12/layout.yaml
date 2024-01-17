@@ -1,0 +1,175 @@
+version: 2
+preset:
+  image: 'gantry-admin://images/layouts/default.png'
+  name: default
+  timestamp: 1686678739
+layout:
+  /navigation/:
+    -
+      - 'spacer-4122 5'
+      - 'logo-9608 45'
+      - 'spacer-5279 25'
+      - 'custom-9595 25'
+  /header/:
+    -
+      - 'spacer-4674 5'
+      - 'menu-6409 83'
+      - 'custom-2082 12'
+  /intro/: {  }
+  /features/: {  }
+  /utility/: {  }
+  /above/: {  }
+  /testimonials/: {  }
+  /expanded/: {  }
+  /container-main/:
+    -
+      -
+        'aside 25':
+          -
+            - position-position-4734
+      -
+        'mainbar 50':
+          -
+            - system-content-1587
+      -
+        'sidebar 25':
+          -
+            - position-position-3949
+  /footer/:
+    -
+      - 'spacer-8368 5'
+      - 'logo-9571 18'
+      - 'custom-8024 30'
+      - 'custom-3989 19'
+      - 'custom-3164 17'
+      - 'totop-8670 11'
+  offcanvas:
+    -
+      - mobile-menu-5697
+structure:
+  navigation:
+    type: section
+    attributes:
+      boxed: '2'
+      class: ''
+      variations: ''
+  header:
+    attributes:
+      boxed: '2'
+      class: ''
+      variations: ''
+  intro:
+    type: section
+    attributes:
+      boxed: ''
+  features:
+    type: section
+    attributes:
+      boxed: '0'
+      class: ''
+      variations: ''
+  utility:
+    type: section
+    attributes:
+      boxed: ''
+      class: ''
+  above:
+    type: section
+    attributes:
+      boxed: ''
+  testimonials:
+    type: section
+    attributes:
+      boxed: ''
+  expanded:
+    type: section
+    attributes:
+      boxed: ''
+  aside:
+    attributes:
+      class: ''
+    block:
+      fixed: '1'
+  mainbar:
+    type: section
+    subtype: main
+  sidebar:
+    type: section
+    subtype: aside
+    attributes:
+      class: ''
+    block:
+      fixed: '1'
+  container-main:
+    attributes:
+      boxed: ''
+  footer:
+    attributes:
+      boxed: '2'
+      class: ''
+      variations: ''
+  offcanvas:
+    attributes:
+      position: g-offcanvas-left
+      class: ''
+      extra: {  }
+      swipe: '1'
+      css3animation: '1'
+content:
+  logo-9608:
+    title: 'Logo / Image'
+    attributes:
+      image: 'gantry-media://LogoMakr-107aDH.png'
+      svg: ''
+      class: g-logo
+    block:
+      fixed: '1'
+  custom-9595:
+    title: 'Custom HTML'
+    attributes:
+      html: "<div>\n  <span style=\"display: inline-block; vertical-align: middle;\">\n    <img src=\"http://localhost/sitioweb1/images/icons8-google-maps-40.png\" alt=\"Icono de Ubicación\" width=\"20\" height=\"25\">\n  </span>\n  <span style=\"display: inline-block; vertical-align: middle; margin-left: 5px; color: white; font-weight: bold;\">\n    Zarumilla - Aguas Verdes\n  </span>\n</div>"
+  menu-6409:
+    attributes:
+      menu: menuprincipal
+      base: '102'
+      hoverExpand: '1'
+  custom-2082:
+    title: 'Custom HTML'
+    attributes:
+      html: "<!-- Agrega la librería SweetAlert -->\n<script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@11\"></script>\n\n<form action=\"http://localhost/sitioweb1/index.php/antienvejecimiento\" method=\"get\" class=\"search-form\" onsubmit=\"return buscar(event)\">\n  <input type=\"text\" name=\"search\" id=\"search-input\" placeholder=\"Buscar...\" />\n  <button type=\"submit\" style=\"background-color: #f09f27; padding: 5px 20px;\n  border: 1px solid #ccc;\n  border-radius: 10px;\n  margin-right: 0px;\">Buscar</button>\n</form>\n\n<script>\n  function buscar(event) {\n    event.preventDefault(); // Evita que el formulario se envíe\n\n    var searchInput = document.getElementById('search-input');\n    var searchTerm = searchInput.value.trim();\n\n    // Realizar lógica de búsqueda\n    if (searchTerm === '') {\n      Swal.fire({\n        icon: 'warning',\n        title: 'Campo vacío',\n        text: 'Por favor, ingresa un término de búsqueda.',\n      });\n    } else if (window.location.pathname === 'http://localhost/sitioweb1/index.php/antienvejecimiento') {\n      Swal.fire({\n        icon: 'success',\n        title: 'Página encontrada',\n        text: 'La página que buscas ha sido encontrada.',\n      });\n    } else {\n'http://localhost/sitioweb1/index.php/antienvejecimiento'\n      // Realizar la búsqueda en Joomla\n      // ...\n      // Lógica para buscar en Joomla y redirigir\n      // ...\n\n      Swal.fire({\n        icon: 'error',\n        title: 'Búsqueda no encontrada',\n        text: 'No se encontraron resultados para: ' + searchTerm,\n      });\n      searchInput.value = ''; // Limpiar el campo de búsqueda\n    }\n  }\n</script>\n"
+      filter: '0'
+  position-position-4734:
+    title: Aside
+    attributes:
+      key: aside
+  position-position-3949:
+    title: Sidebar
+    attributes:
+      key: sidebar
+  logo-9571:
+    title: 'Logo / Image'
+    attributes:
+      url: ''
+      target: _self
+      image: 'gantry-media://LogoMakr-107aDH.png'
+      svg: ''
+      text: 'COMPRA CON CONFIANZA'
+      class: 'g-logo g-logo-helium'
+    block:
+      variations: title1
+  custom-8024:
+    title: 'Custom HTML'
+    attributes:
+      html: "<p>COMPRA CON CONFIANZA</br>\nSEGUIMIENTO DE ESTADO DE CUENTA </br>CAMBIO Y DEVOLUCIONES</p>"
+  custom-3989:
+    title: 'Custom HTML'
+    attributes:
+      html: "<div class=\"libro-reclamaciones\">\n  <img src=\"http://localhost/sitioweb1/images/libro-de-reclamaciones-removebg-preview%201.png\" alt=\"Libro de Reclamaciones\" width=\"150\" height=\"150\">\n  \n</div>"
+  custom-3164:
+    title: 'Custom HTML'
+    attributes:
+      html: "<p>SERVICIO AL CLIENTE</br>TLF: 987547390 </br>RUC: 1054382856</p>\n"
+  totop-8670:
+    title: 'To Top'
+    attributes:
+      content: ''
